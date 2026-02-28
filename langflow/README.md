@@ -35,7 +35,7 @@
                               [Recommendation Output]
 ```
 
-**Exercise:** Students modify mock data to simulate different users, or modify the Analyzer Agent's weighting.
+**Exercise:** Students try different user IDs (TU-001 through TU-010) and modify the Analyzer Agent's weighting. The API Request nodes fetch real data from endpoints.
 
 ---
 
@@ -61,9 +61,37 @@
 
 ---
 
+## Mock API Setup (Tool Use Flow)
+
+The Tool Use flow uses **API Request** nodes that call real endpoints to fetch usage and billing data. Two options are available:
+
+### Option A: GitHub Raw URLs (Zero-Setup Fallback)
+The flow is pre-configured with GitHub raw URLs that return all user data as static JSON:
+
+| API | URL |
+|-----|-----|
+| **Usage Data** | `https://raw.githubusercontent.com/shameekc/agentic-ai-for-pm/main/sample_data/mock_api/usage_data.json` |
+| **Billing Data** | `https://raw.githubusercontent.com/shameekc/agentic-ai-for-pm/main/sample_data/mock_api/billing_data.json` |
+
+These return data for all 10 trial users (TU-001 through TU-010). The Analyzer Agent extracts the relevant user by ID from the full JSON response.
+
+### Option B: Make.com Webhook APIs (Recommended for Class)
+Build two Make.com scenarios that accept a `user_id` and return only that user's data. See the **Instructor Runbook** for step-by-step Make.com build instructions.
+
+Once built, paste your Make.com webhook URLs into the API Request nodes and switch the HTTP Method to **POST** with body: `{"user_id": "TU-004"}`.
+
+### API Data Reference
+Each API returns rich, realistic mock data:
+
+**Usage Data** (mimics Mixpanel): login streaks, feature adoption rates, session duration trends, collaboration scores, onboarding completion, integration activity
+
+**Billing Data** (mimics Stripe): pricing page visit dates, plan comparisons, cart abandonment events, discount code attempts, payment method status, estimated MRR
+
+---
+
 ## Important Notes
 
-- These flows use **mock data** for the tool-use pattern (no real API calls needed)
+- The Tool Use flow uses **API Request** nodes that call real endpoints (GitHub raw URLs by default, or Make.com webhooks)
 - The flows use **gpt-4o-mini** by default — change the model name in each OpenAI node if needed
 - If import has issues with your Langflow version, you can **recreate the flows manually** using the prompts below as reference — the key value is in the prompts themselves
 
