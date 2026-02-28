@@ -68,6 +68,12 @@ Or open directly in Google Antigravity:
 │   ├── README.md              ← Import instructions
 │   ├── Reflection_Pattern_NovaByte.json  ← Langflow flow (import this)
 │   └── ToolUse_Pattern_NovaByte.json     ← Langflow flow (import this)
+├── pm-workflows/              ← Antigravity PM workflow demos
+│   ├── user-interviews/       ← 6 raw NovaByte trial user interview transcripts
+│   ├── meeting-notes-raw.md   ← Messy product sync meeting notes
+│   ├── prd-template.md        ← PRD template for Socratic questioning exercise
+│   ├── novabyte-context.md    ← Company context doc (metrics, OKRs, competitive landscape)
+│   └── trial-funnel-data.csv  ← 200-row funnel dataset for data analysis exercise
 └── handout/
     └── Session1_Student_Handout.md       ← Reference during class
 ```
@@ -98,6 +104,16 @@ The [`langflow/`](./langflow/) folder contains two pre-built flows you'll import
 2. **Tool Use Pattern** — Agent fetches data from mock APIs before making a recommendation
 
 See [`langflow/README.md`](./langflow/README.md) for import instructions.
+
+### PM Workflow Files (Sessions 1 & 2)
+The [`pm-workflows/`](./pm-workflows/) folder contains supporting files for Antigravity PM workflow demos:
+- **`user-interviews/`** — 6 raw interview transcripts from NovaByte trial users (for synthesis exercises)
+- **`meeting-notes-raw.md`** — Messy meeting notes from a product sync (for multi-format output demos)
+- **`prd-template.md`** — PRD template for Socratic questioning exercise (Session 2)
+- **`novabyte-context.md`** — Company context with metrics, OKRs, and competitive landscape (Session 2)
+- **`trial-funnel-data.csv`** — 200-row funnel dataset for data analysis and segmentation (Session 2)
+
+Open these files in Google Antigravity to use them in PM workflow exercises.
 
 ---
 
