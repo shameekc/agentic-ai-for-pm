@@ -49,7 +49,7 @@
           "node": {
             "base_classes": ["Data"],
             "display_name": "Tool: Fetch Usage Data",
-            "description": "Calls the NovaByte Usage Analytics API (Mixpanel mock) to get product usage data for a trial user. PRIMARY: Use Make.com webhook URL. FALLBACK: Use GitHub raw URL.",
+            "description": "Calls the NovaByte Usage Analytics API (Mixpanel mock) to get product usage data for a trial user. DEFAULT: Beeceptor mock API. FALLBACK: GitHub raw URL. ADVANCED: Make.com webhook.",
             "icon": "globe",
             "template": {
               "_type": "Component",
@@ -60,7 +60,7 @@
                 "multiline": false,
                 "value": "https://raw.githubusercontent.com/shameekc/agentic-ai-for-pm/main/sample_data/mock_api/usage_data.json",
                 "display_name": "API URL",
-                "info": "PRIMARY (Make.com): Paste your Make.com webhook URL here (e.g., https://hook.us1.make.com/xxx). FALLBACK (GitHub): https://raw.githubusercontent.com/shameekc/agentic-ai-for-pm/main/sample_data/mock_api/usage_data.json"
+                "info": "Paste YOUR Beeceptor URL here (e.g., https://your-name.free.beeceptor.com/usage_data). FALLBACK (GitHub): https://raw.githubusercontent.com/shameekc/agentic-ai-for-pm/main/sample_data/mock_api/usage_data.json — ADVANCED (Make.com): Paste your Make.com webhook URL and switch to POST."
               },
               "method": {
                 "type": "str",
@@ -83,7 +83,7 @@
                 "show": true,
                 "value": {},
                 "display_name": "Request Body",
-                "info": "For Make.com webhook: set method to POST and body to {\"user_id\": \"TU-004\"}. For GitHub fallback: leave empty (GET returns all users)."
+                "info": "For Beeceptor or GitHub: leave empty (GET returns all users). For Make.com webhook: set method to POST and body to {\"user_id\": \"TU-004\"}."
               },
               "timeout": {
                 "type": "int",
@@ -116,7 +116,7 @@
           "node": {
             "base_classes": ["Data"],
             "display_name": "Tool: Fetch Billing Data",
-            "description": "Calls the NovaByte Billing Signals API (Stripe mock) to get billing data for a trial user. PRIMARY: Use Make.com webhook URL. FALLBACK: Use GitHub raw URL.",
+            "description": "Calls the NovaByte Billing Signals API (Stripe mock) to get billing data for a trial user. DEFAULT: Beeceptor mock API. FALLBACK: GitHub raw URL. ADVANCED: Make.com webhook.",
             "icon": "globe",
             "template": {
               "_type": "Component",
@@ -127,7 +127,7 @@
                 "multiline": false,
                 "value": "https://raw.githubusercontent.com/shameekc/agentic-ai-for-pm/main/sample_data/mock_api/billing_data.json",
                 "display_name": "API URL",
-                "info": "PRIMARY (Make.com): Paste your Make.com webhook URL here (e.g., https://hook.us1.make.com/yyy). FALLBACK (GitHub): https://raw.githubusercontent.com/shameekc/agentic-ai-for-pm/main/sample_data/mock_api/billing_data.json"
+                "info": "Paste YOUR Beeceptor URL here (e.g., https://your-name.free.beeceptor.com/billing_data). FALLBACK (GitHub): https://raw.githubusercontent.com/shameekc/agentic-ai-for-pm/main/sample_data/mock_api/billing_data.json — ADVANCED (Make.com): Paste your Make.com webhook URL and switch to POST."
               },
               "method": {
                 "type": "str",
@@ -150,7 +150,7 @@
                 "show": true,
                 "value": {},
                 "display_name": "Request Body",
-                "info": "For Make.com webhook: set method to POST and body to {\"user_id\": \"TU-004\"}. For GitHub fallback: leave empty (GET returns all users)."
+                "info": "For Beeceptor or GitHub: leave empty (GET returns all users). For Make.com webhook: set method to POST and body to {\"user_id\": \"TU-004\"}."
               },
               "timeout": {
                 "type": "int",
@@ -340,7 +340,7 @@
         "position": {"x": 100, "y": 50},
         "data": {
           "node": {
-            "description": "# Tool Use Pattern: Agent-Driven Data Gathering\n\n## How this flow works:\n1. **User ID Input** — Just an ID (the agent fetches everything else)\n2. **Tool: Usage Data** — Calls Usage Analytics API for product usage\n3. **Tool: Billing Data** — Calls Billing Signals API for billing signals\n4. **Combine** — Merges data from both API calls\n5. **Analyzer Agent** — Produces structured recommendation\n\n## Key Insight:\nThe agent didn't need us to feed it data — it went and GOT it via API calls.\nThis is what separates an agent from a chatbot.\n\n## API Endpoints:\n- **Primary (Make.com):** Paste your Make.com webhook URLs into each API Request node\n- **Fallback (GitHub):** Pre-configured with raw GitHub URLs that return all user data\n\n## Exercise:\n- Try different user IDs (TU-001 through TU-010)\n- Modify the Analyzer Agent prompt to weight different signals\n- Add a third data source (e.g., support ticket data)\n\n## Bridge to Session 2: MCP\nToday we wired these API calls manually. With MCP, the agent would know which tool to call automatically — like USB-C for AI.",
+            "description": "# Tool Use Pattern: Agent-Driven Data Gathering\n\n## How this flow works:\n1. **User ID Input** — Just an ID (the agent fetches everything else)\n2. **Tool: Usage Data** — Calls Usage Analytics API for product usage\n3. **Tool: Billing Data** — Calls Billing Signals API for billing signals\n4. **Combine** — Merges data from both API calls\n5. **Analyzer Agent** — Produces structured recommendation\n\n## Key Insight:\nThe agent didn't need us to feed it data — it went and GOT it via API calls.\nThis is what separates an agent from a chatbot.\n\n## API Endpoints:\n- **Default (Beeceptor):** Pre-configured with Beeceptor mock API URLs\n- **Fallback (GitHub):** Use raw GitHub URLs that return all user data\n- **Advanced (Make.com):** Paste your Make.com webhook URLs into each API Request node\n\n## Exercise:\n- Try different user IDs (TU-001 through TU-010)\n- Modify the Analyzer Agent prompt to weight different signals\n- Add a third data source (e.g., support ticket data)\n\n## Bridge to Session 2: MCP\nToday we wired these API calls manually. With MCP, the agent would know which tool to call automatically — like USB-C for AI.",
             "display_name": "Instructions",
             "template": {}
           }

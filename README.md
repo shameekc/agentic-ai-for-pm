@@ -43,7 +43,7 @@ This course teaches product leaders how to design, build, and govern AI agent sy
 ### 2. Clone This Repo
 
 ```bash
-git clone https://github.com/<your-org>/agentic-ai-for-pm.git
+git clone https://github.com/shameekc/agentic-ai-for-pm.git
 cd agentic-ai-for-pm
 ```
 

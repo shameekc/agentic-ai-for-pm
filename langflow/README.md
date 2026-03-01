@@ -63,19 +63,30 @@
 
 ## Mock API Setup (Tool Use Flow)
 
-The Tool Use flow uses **API Request** nodes that call real endpoints to fetch usage and billing data. Two options are available:
+The Tool Use flow uses **API Request** nodes that call real endpoints to fetch usage and billing data. Three options are available:
 
-### Option A: GitHub Raw URLs (Zero-Setup Fallback)
-The flow is pre-configured with GitHub raw URLs that return all user data as static JSON:
+### Option A: Create Your Own Beeceptor Mock API (Recommended)
+Create your own mock API endpoints — it takes 5 minutes and is a useful PM skill:
+
+1. Go to [beeceptor.com](https://beeceptor.com), enter a subdomain name (e.g., `your-name-novabyte`), click **Create Endpoint**
+2. Click **Mocking Rules** → **Create New Rule**
+3. Create a rule for `/usage_data` (GET, 200, paste contents of `sample_data/mock_api/usage_data.json`)
+4. Create a rule for `/billing_data` (GET, 200, paste contents of `sample_data/mock_api/billing_data.json`)
+5. Replace the URLs in the Langflow flow nodes with your Beeceptor URLs
+
+These return data for all 10 trial users (TU-001 through TU-010). The Analyzer Agent extracts the relevant user by ID from the full JSON response.
+
+### Option B: GitHub Raw URLs (Zero-Setup Fallback)
+Static GitHub URLs that always work as a fallback:
 
 | API | URL |
 |-----|-----|
 | **Usage Data** | `https://raw.githubusercontent.com/shameekc/agentic-ai-for-pm/main/sample_data/mock_api/usage_data.json` |
 | **Billing Data** | `https://raw.githubusercontent.com/shameekc/agentic-ai-for-pm/main/sample_data/mock_api/billing_data.json` |
 
-These return data for all 10 trial users (TU-001 through TU-010). The Analyzer Agent extracts the relevant user by ID from the full JSON response.
+These return data for all 10 trial users. To use these, paste the URLs into the API Request nodes.
 
-### Option B: Make.com Webhook APIs (Recommended for Class)
+### Option C: Make.com Webhook APIs (Advanced)
 Build two Make.com scenarios that accept a `user_id` and return only that user's data. See the **Instructor Runbook** for step-by-step Make.com build instructions.
 
 Once built, paste your Make.com webhook URLs into the API Request nodes and switch the HTTP Method to **POST** with body: `{"user_id": "TU-004"}`.
